@@ -1,22 +1,77 @@
 docker container run hello-world
+o Docker irá baixar a imagem hello-world do Docker Hub, caso ela ainda não esteja disponível localmente. Em seguida, ele criará um novo contêiner a partir dessa imagem e executará o comando especificado na imagem, que normalmente imprime uma mensagem "Olá, Mundo!" junto com algumas informações sobre o Docker. Este comando é frequentemente utilizado para verificar se o Docker está instalado e funcionando corretamente em um sistema.
 
 docker container ls
+lista todos os contêineres em execução no momento. Ele exibe informações como o ID do contêiner, a imagem a partir da qual o contêiner foi criado, o status do contêiner, os nomes atribuídos (se houver) e outras informações relevantes. Se nenhum contêiner estiver em execução, o comando não retornará nenhum resultado. Se desejar ver todos os contêineres, incluindo os que não estão em execução, você pode adicionar a opção -a ao comando, como docker container ls -a.
 
 docker container ls -a
+lista todos os contêineres, independentemente de estarem em execução ou não. Ele exibe informações como o ID do contêiner, a imagem a partir da qual o contêiner foi criado, o status do contêiner, os nomes atribuídos (se houver) e outras informações relevantes. Isso inclui contêineres em execução, contêineres parados e contêineres que foram finalizados.
 
 docker container run --name meucontainer hello-world
+Este comando cria um novo contêiner com o nome especificado como "meucontainer" e executa a imagem "hello-world". O Docker irá primeiro verificar se a imagem "hello-world" está disponível localmente; caso contrário, irá baixá-la do Docker Hub. Em seguida, ele criará um novo contêiner a partir dessa imagem e o nomeará como "meucontainer". O contêiner será executado, e você verá a saída padrão, que normalmente inclui uma mensagem "Olá, Mundo!" junto com algumas informações sobre o Docker.
 
 docker container rm cf353367b48b
+Este comando remove um contêiner específico com o ID cf353367b48b. Quando um contêiner é removido, ele não será mais listado quando você executar docker container ls -a. Certifique-se de que o contêiner que você deseja remover não está em execução; caso contrário, você precisará adicionara opção -f para forçar a remoção, como docker container rm -f cf353367b48b.
 
 docker container rm objective_babbage
+Esse comando remove um contêiner com o nome "objective_babbage". Quando você remove um contêiner, ele não estará mais disponível na lista de contêineres. Certifique-se de que o contêiner que você deseja remover não esteja em execução; caso contrário, você pode adicionar a opção -f para forçar a remoção.
 
 docker container rm 2380
-
+O comando docker container rm 2380 remove o contêiner identificado pelo ID 2380. Certifique-se de que esse ID corresponde ao contêiner que você deseja remover, pois a remoção é irreversível e o contêiner não poderá ser restaurado posteriormente.
 docker run hello-world
 
 docker ps
+O comando docker ps lista apenas os contêineres em execução no momento. Se você deseja listar todos os contêineres, incluindo os que não estão em execução, você deve usar o comando docker container ls. Se preferir, você pode adicionar a opção -a ao comando docker ps, ficando docker ps -a, que terá o mesmo efeito que docker container ls -a.
 
 docker ps -a
+docker ps -a lista todos os contêineres, incluindo os que estão em execução e os que não estão. Ele exibe informações como o ID do contêiner, a imagem a partir da qual o contêiner foi criado, o status do contêiner, os nomes atribuídos (se houver) e outras informações relevantes. Isso é útil para verificar o histórico de contêineres e identificar os que foram criados, executados e removidos.
 
 docker rm c426a95f22bb
+O comando docker rm c426a95f22bb remove o contêiner com o ID c426a95f22bb. Certifique-se de que este é o contêiner que você deseja remover, pois a operação é irreversível e o contêiner não poderá ser restaurado após a remoção.
 
+docker container run -it ubuntu /bin/bash
+Esse comando cria e inicia um novo contêiner baseado na imagem do Ubuntu e inicia um shell interativo (/bin/bash) dentro desse contêiner. Aqui está o que cada parte do comando faz:
+
+docker container run: Inicia um novo contêiner.
+-it: São duas opções combinadas:
+-i ou --interactive: Mantém a entrada padrão aberta, permitindo a interação com o contêiner.
+-t ou --tty: Aloca um pseudo-TTY (Terminal) que permite a interação com o shell dentro do contêiner.
+ubuntu: É o nome da imagem do Ubuntu que será usada para criar o contêiner.
+/bin/bash: Especifica o comando a ser executado dentro do contêiner, neste caso, o shell bash. Isso abre um terminal interativo dentro do contêiner, permitindo que você execute comandos como se estivesse usando um terminal Ubuntu padrão.
+Basicamente, esse comando permite que você entre em um ambiente Ubuntu dentro de um contêiner Docker e interaja com ele através de um shell bash.
+
+docker container run --rm -it ubuntu /bin/bash
+Este comando é semelhante ao anterior, mas com uma adição importante:
+--rm: Esta opção remove o contêiner automaticamente após ele ser encerrado. Isso é útil para evitar que contêineres temporários se acumulem no sistema, especialmente útil para contêineres que são executados para tarefas específicas e não precisam ser mantidos após a execução.
+Então, este comando cria um novo contêiner baseado na imagem do Ubuntu, inicia um shell interativo (/bin/bash) dentro desse contêiner e, após a saída do shell, remove automaticamente o contêiner. Isso é útil para cenários onde você só precisa executar um comando ou um conjunto de comandos dentro de um contêiner temporário e não precisa manter o contêiner após a execução.
+
+docker container run nginx
+
+docker container run -d nginx
+
+docker exec -it b58ac86a9f54 /bin/bash
+
+docker container run -d -p 8080:80 nginx
+
+docker container stop b58ac86a9f54
+
+docker container start b58ac86a9f54
+
+docker container rm -f b58ac86a9f54
+
+docker container ls -aq
+
+docker container rm -f $(docker container ls -aq)
+
+https://12factor.net/pt_br/
+
+docker container run -p 3306 -d mysql (errado proposital)
+
+docker logs f0a2ec140d31
+
+https://hub.docker.com/
+Procurar a documentacao de uma imagem
+
+docker container run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD="root1234" -e MYSQL_DATABASE=docker -e MYSQL_USER=userdocker -e MYSQL_PASSWORD=dockerpwd mysql
+
+docker container run -d -p 5432:5432 -e POSTGRES_DB=cursodocker -e POSTGRES_USER=userdocker -e POSTGRES_PASSWORD=dockerpwd postgres
