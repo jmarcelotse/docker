@@ -1,0 +1,1 @@
+docker container run -d -p 5432:5432 -e POSTGRES_DB=cursodocker -e POSTGRES_USER=userdocker -e POSTGRES_PASSWORD=dockerpwd postgres
