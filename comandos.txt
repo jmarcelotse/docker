@@ -79,3 +79,5 @@ docker container run -d -p 5432:5432 -e POSTGRES_DB=cursodocker -e POSTGRES_USER
 docker container run -d -p 5432:5432 -e POSTGRES_DB=cursodocker -e POSTGRES_USER=userdocker -e POSTGRES_PASSWORD=dockerpwd postgres
 
 docker container run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=mongo_usr -e MONGO_INITDB_ROOT_PASSWORD=mongo_pwd mongo
+
+#
