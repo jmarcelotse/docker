@@ -84,4 +84,10 @@ docker container run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=mongo_usr -
 Geralmente as config estao na pasta src
 rodar o comando -> npm install
 rodar o comando -> node server.js
+#################################################
+
+Rodar a aplicao em um container
+docker container run -it -p 8080:8080 ubuntu /bin/bash
+
+docker container cp . 1eaa7a1c0783:/app
 
